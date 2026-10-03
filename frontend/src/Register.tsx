@@ -3,7 +3,7 @@ import Button from "./components/shared/Button";
 import { Container } from "./components/shared/Contianer";
 import Input from "./components/shared/Input";
 
-const Login = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   console.log(email);
 
@@ -14,6 +14,7 @@ const Login = () => {
         alt="Logo Madruga Nurguer"
         style={{ width: "170px" }}
       />
+      <Input type="text" placeholder="Nome Completo" />
       <Input
         type="email"
         placeholder="E-mail"
@@ -23,14 +24,11 @@ const Login = () => {
       />
       <Input type="password" placeholder="Senha" />
 
-      <Button className="mt-2 rounded-full bg-orange-600 py-2 font-semibold text-white">
-        Login
-      </Button>
-      <Button className="mt-2 rounded-full bg-orange-200 py-1 font-semibold text-black">
+      <Button className="mt-2 rounded-full bg-orange-600 py-2 font-semibold text-orange-950">
         Criar Conta
       </Button>
     </Container>
   );
 };
 
-export default Login;
+export default Register;
