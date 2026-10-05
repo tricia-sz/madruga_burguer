@@ -6,11 +6,11 @@ type ButtonType = {
 const Button = ({ title, variant = "default", ...props }: ButtonType) => {
   const buttonVariant = () => {
     if (variant === "default") {
-      return "mt-2 bg-orange-600 rounded-full bg-orange-600 py-2 font-semibold text-white";
+      return "w-64 mt-2 bg-orange-600 rounded-full bg-orange-600 py-3 font-semibold text-white";
     } else if (variant === "outline") {
-      return "w-full bg-orange-200 cursor-pointer rounded-md border-2 border-orange-600";
+      return "w-64 py-3 rounded-full bg-orange-400 cursor-pointer ";
     } else {
-      return "w-full  cursor-pointer rounded-md border-2 border-blue-600";
+      return "w-64  text-white  py-3 cursor-pointer rounded-full border-2 border-blue-600";
     }
   };
 
