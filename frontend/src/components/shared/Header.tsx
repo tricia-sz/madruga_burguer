@@ -8,7 +8,7 @@ export default function Header() {
           <img src="./logo.svg" alt="Madruga Burguer" className="" />
         </div>
         <div>
-          <Button className="w-28 rounded-full bg-orange-300 py-3">
+          <Button className="w-28 rounded-full bg-orange-200 py-3">
             Bem-Vindo
           </Button>
         </div>

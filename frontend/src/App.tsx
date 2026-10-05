@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
       <Container className="mb-10 flex items-center justify-center gap-4 text-white">
-        <Login />
+        {/* <Login /> */}
         <Register />
       </Container>
       <Footer />
