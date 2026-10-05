@@ -3,7 +3,7 @@ const Input = (props: React.InputHTMLAttributes<HTMLInputElement>) => {
     <>
       <input
         {...props}
-        className="placeholder: w-90 rounded-md bg-orange-200 px-2 py-2 text-sm text-gray-950 outline-none placeholder:text-gray-500"
+        className="placeholder: w-90 rounded-md bg-orange-100 px-2 py-2 text-sm text-gray-950 outline-none placeholder:text-gray-500"
       />
     </>
   );

@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import Button from "./Button";
 
 export default function Header() {
@@ -7,11 +8,9 @@ export default function Header() {
         <div className="w-1/9">
           <img src="./logo.svg" alt="Madruga Burguer" className="" />
         </div>
-        <div>
-          <Button className="w-28 rounded-full bg-orange-300 py-3">
-            Bem-Vindo
-          </Button>
-        </div>
+        <NavLink to="/login">
+          <Button variant="outline" title="Entrar" />
+        </NavLink>
       </div>
     </header>
   );
