@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Button from "./components/shared/Button";
-import Input from "./components/shared/Input";
+import Input from "../components/shared/Input";
+import Button from "../components/shared/Button";
 
 const Register = () => {
   const [name, setName] = useState("");
