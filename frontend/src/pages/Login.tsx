@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router";
+import { NavLink } from "react-router";
 import Input from "../components/shared/Layout/Input";
 import Button from "../components/shared/Layout/Button";
 import { useState } from "react";
@@ -6,12 +6,19 @@ import { useState } from "react";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log(email);
 
-  function handleSubmit(event: any) {
+  async function handleSubmit(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
-    console.log(email);
-    console.log(password);
+
+    const response = fetch("http://localhost:3333/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await (await response).json();
+    console.log(data);
   }
 
   return (
