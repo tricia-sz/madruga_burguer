@@ -10,19 +10,32 @@ server.use(cors());
 
 connection();
 
-// server.get()
-
 server.post("/login", async (request, response) => {
-  const { email, password } = request.body;
-  const users = await prisma.user.findFirst({
-    where: {
-      email,
-      password,
-    },
-  });
+  try {
+    const { email, password } = request.body;
 
-  console.log(users);
-  return response.json(users);
+    if (!email || !password) {
+      response.status(404).json({ message: "Usuário não encontrado!" });
+      return;
+    }
+
+    const user = await prisma.user.findFirst({
+      where: {
+        email,
+        password,
+      },
+    });
+
+    if (!user) {
+      response.status(404).json({ message: "Usuário não encontrado." });
+      return;
+    }
+
+    response.status(200).json(user);
+  } catch (error) {
+    response.status(500).json({ message: "Erro no Servidor" });
+    return;
+  }
 });
 
 server.listen(3333, () => {

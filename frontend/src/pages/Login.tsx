@@ -6,19 +6,38 @@ import { useState } from "react";
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
   async function handleSubmit(event: React.ChangeEvent<HTMLInputElement>) {
     event.preventDefault();
 
-    const response = fetch("http://localhost:3333/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    try {
+      const response = fetch("http://localhost:3333/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
 
-      body: JSON.stringify({ email, password }),
-    });
+        body: JSON.stringify({ email, password }),
+      });
 
-    const data = await (await response).json();
-    console.log(data);
+      if (!email || !password) {
+        setError("E-mail e senha são obrigatórios");
+        return;
+      }
+
+      if ((await response).status === 404) {
+        setError("Usuário não encontrado.");
+      }
+      if ((await response).status === 400) {
+        setError("Usuário e senha são obrigatórios");
+      }
+      if ((await response).status === 200) {
+        setError("");
+        const data = await (await response).json();
+        console.log(data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
@@ -47,6 +66,7 @@ export default function Login() {
             placeholder="Senha"
             onChange={(e) => setPassword(e.target.value)}
           />
+          <p className="text-sm text-red-500">{error} </p>
         </div>
         <div className="mb-12 flex flex-col items-center justify-between gap-4">
           <Button
