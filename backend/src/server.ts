@@ -1,12 +1,23 @@
 import express, { json } from "express";
+import { prisma } from "./lib/db";
 
 import { connection } from "./lib/db";
 
 const server = express();
+server.use(express.json());
 connection();
 
-server.get("/", (request, response) => {
-  return response.json({ message: "Alguem acessou a rota inicial!" });
+server.post("/login", async (request, response) => {
+  const { email, password } = request.body;
+  const users = await prisma.user.findFirst({
+    where: {
+      email,
+      password,
+    },
+  });
+
+  console.log(users);
+  return response.json(users);
 });
 
 server.listen(3333, () => {
